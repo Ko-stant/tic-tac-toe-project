@@ -69,7 +69,6 @@ let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 // update gameBoard indexes per box selected
 
-
 const even = function(i) {
   if (i % 2) {
     return false
@@ -82,13 +81,13 @@ const even = function(i) {
 // when div[i] is selected by player, automatically determine player
 // based on playcount
 // if play is odd, always update game with X
-if (play === div[i] && even(play) === false) {
-  gameboard[i] = player_x
-}
-// if play is even, always update game with O
-if (play === div[i] && even(play) === true) {
-  gameBoard[i] = player_o
-}
+// if (play === div[i] && even(play) === false) {
+//   gameboard[i] = player_x
+// }
+// // if play is even, always update game with O
+// if (play === div[i] && even(play) === true) {
+//   gameBoard[i] = player_o
+// }
 
 // use bookmarked stack overflow page to help with blur/focus for hiding/showing
 // submenus

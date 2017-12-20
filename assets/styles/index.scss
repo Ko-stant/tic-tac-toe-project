@@ -1,2 +1,19 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+body {
+  max-width: 1200px;
+  height: auto;
+}
+
+header > div {
+  border: 1px solid black;
+  margin-bottom: 300px;
+  text-align: center;
+}
+
+.game-board {
+  border: 1px solid black;
+  height: 120px;
+  width: 120px;
+}
