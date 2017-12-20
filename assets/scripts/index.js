@@ -16,34 +16,32 @@ $(() => {
 // gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 // update with 'X' and 'O' based on turn
 
-
 // object to keep track of game, in progress or finished
 
 // userData can be constructor to have blank user and games info
 // kostant = new UserData    etc
 
 // kostant = {
-    // each created user to be assigned an ID on user creation
+// each created user to be assigned an ID on user creation
 //     user: {
-    // id will be used when choosing X or O for player
+// id will be used when choosing X or O for player
 //       id: 1,
 //       email: "and@and.com"
 //      },
 //     games: {
 //      id: 1,
 //      cells: ["o","x","o","x","o","x","o","x","o"],
-    // toggle when game win or tie is displayed
+// toggle when game win or tie is displayed
 //      over: true,
-    // this is to be able to continue if game is not over
-    // count is determined by current number of X + O in array
-    // if even, next play is X, if odd, next play is O if 9, automatically toggle > over: true
+// this is to be able to continue if game is not over
+// count is determined by current number of X + O in array
+// if even, next play is X, if odd, next play is O if 9, automatically toggle > over: true
 //      lastPlay: 9,
-//      player_x: {
-]   // will use user.id to generate
+//      player_x: {   // will use user.id to generate
 //        id: 1
 //      },
 //      player_o: {
-    // will use user.id to generate
+// will use user.id to generate
 //        id: 3
 // }
 
@@ -72,7 +70,7 @@ let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 // update gameBoard indexes per box selected
 
 
-const even = function (i) {
+const even = function(i) {
   if (i % 2) {
     return false
   } else {
@@ -83,18 +81,14 @@ const even = function (i) {
 // event listener updates turn as well as inserting string into arrays
 // when div[i] is selected by player, automatically determine player
 // based on playcount
-//if play is odd, always update game with X
+// if play is odd, always update game with X
 if (play === div[i] && even(play) === false) {
   gameboard[i] = player_x
 }
-//if play is even, always update game with O
+// if play is even, always update game with O
 if (play === div[i] && even(play) === true) {
   gameBoard[i] = player_o
 }
-
-
-
-
 
 // use bookmarked stack overflow page to help with blur/focus for hiding/showing
 // submenus
