@@ -4,14 +4,16 @@ const getFormFields = require(`../../lib/get-form-fields`)
 const api = require(`./api`)
 const ui = require('./ui')
 
-console.log(getFormFields)
+// console.log(getFormFields)
 
-const onCellSelect = function () {
-  ui.updateCell()
+const onCellSelect = function (event) {
+  const cellData = event.target.dataset
+  const cellIndex = cellData.cellIndex
+  ui.updateCell(cellIndex)
 }
 
 const addHandlers = function () {
-  $('#tl').on('click', onCellSelect)
+  $('.game-field').on('click', onCellSelect)
 }
 
 module.exports = {
