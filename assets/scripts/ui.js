@@ -2,23 +2,30 @@
 
 const store = require('./store')
 
-// const updateCell = function () {
-//   const test = document.getElementsByClassName('game-board')
-//   $(test[7]).text('clicked.')
-// }
-
-// const getDataset = function () {
-//   const boardArray = []
-//   const divArray = document.getElementsByClassName('game-board')
-//   for (let i = 0; i < divArray.length; i++) {
-//     const dataSet = divArray[i].dataset.cellIndex
-//     boardArray.push(dataSet)
-//   }
-//   return boardArray
-// }
+// will be used to determine turn based on even/odd
+const isEven = function (i) {
+  if (i % 2) {
+    return false
+  } else {
+    return true
+  }
+}
+const boardArray = ['', '', '', '', '', '', '', '', '']
 
 const updateCell = function (cellIndex) {
-  console.log('the array index will be', cellIndex)
+  let count = 0
+  for (let i = 0; i < boardArray.length - 1; i++) {
+    if (boardArray[i] === 'x' || boardArray[i] === 'o') {
+      count++
+    }
+  }
+  if (isEven(count) === true) {
+    boardArray[cellIndex] = 'x'
+  } else {
+    boardArray[cellIndex] = 'o'
+  }
+  console.log(boardArray)
+  console.log(count)
 }
 
 module.exports = {

@@ -81,5 +81,4 @@ const even = function(i) {
 //   gameBoard[i] = player_o
 // }
 
-// use bookmarked stack overflow page to help with blur/focus for hiding/showing
-// submenus
+// use bookmarked stack overflow page to help with blur/focus for hiding/showing submenus

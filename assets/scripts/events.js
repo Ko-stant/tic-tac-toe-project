@@ -13,7 +13,7 @@ const onCellSelect = function (event) {
 }
 
 const addHandlers = function () {
-  $('.game-field').on('click', onCellSelect)
+  $('.game-board').on('click', onCellSelect)
 }
 
 module.exports = {
