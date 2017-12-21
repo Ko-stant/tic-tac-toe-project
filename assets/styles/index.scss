@@ -2,8 +2,9 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 body {
-  max-width: 1200px;
+  box-sizing: border-box;
   height: auto;
+  max-width: 1200px;
 }
 
 header > div {
@@ -12,8 +13,14 @@ header > div {
   text-align: center;
 }
 
+.row {
+  margin: auto;
+  width: 50%;
+}
+
 .game-board {
   border: 1px solid black;
   height: 120px;
+  margin: auto;
   width: 120px;
 }
