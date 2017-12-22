@@ -47,11 +47,11 @@ const updateCell = function (cellIndex) {
     } else {
       console.log('there was a tie')
     }
-  } else if (turnCount === (5 || 7)) {
+  } else if (turnCount === 5 || turnCount === 7) {
     if (winCheck('x') === true) {
       console.log('x won')
     }
-  } else if (turnCount === (6 || 8)) {
+  } else if (turnCount === 6 || turnCount === 8) {
     if (winCheck('o') === true) {
       console.log('o won')
     }
