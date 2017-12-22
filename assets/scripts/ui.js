@@ -11,23 +11,39 @@ const isEven = function (i) {
   }
 }
 const boardArray = ['', '', '', '', '', '', '', '', '']
-// turnCount is set to 0 inside of function to do a check each time the function is called. The function takes in the index value from events.js and uses that as the array index for board array. Depending on the even/odd value of the turnCount the array is updated with the correct string.
-const updateCell = function (cellIndex) {
-  let turnCount = 0
-  for (let i = 0; i < boardArray.length - 1; i++) {
-    if (boardArray[i] === 'x' || boardArray[i] === 'o') {
-      turnCount++
-    }
+
+const winCheck = function (token) {
+  if ((boardArray[0] === token && boardArray[1] === token && boardArray[2] === token) || (boardArray[3] === token && boardArray[4] === token && boardArray[5] === token) || (boardArray[6] === token && boardArray[7] === token && boardArray[8] === token) || (boardArray[0] === token && boardArray[3] === token && boardArray[6] === token) || (boardArray[1] === token && boardArray[4] === token && boardArray[7] === token) || (boardArray[2] === token && boardArray[5] === token && boardArray[8] === token) || (boardArray[0] === token && boardArray[4] === token && boardArray[8] === token) || (boardArray[2] === token && boardArray[4] === token && boardArray[6] === token)) {
+    console.log(`${token} is the winner`)
   }
+}
+
+let turnCount = 0
+const updateCell = function (cellIndex) {
   if (boardArray[cellIndex] === 'x' || boardArray[cellIndex] === 'o') {
     console.log('square is already taken.')
   } else if (isEven(turnCount) === true) {
     boardArray[cellIndex] = 'x'
+    $('.game-board')[cellIndex].innerHTML = 'x'
   } else if (isEven(turnCount) === false) {
     boardArray[cellIndex] = 'o'
+    $('.game-board')[cellIndex].innerHTML = 'o'
   }
-  console.log(boardArray)
-  console.log(turnCount)
+  const turnArray = []
+  boardArray.forEach(function (value) {
+    if (value === 'x' || value === 'o') {
+      turnArray.push(value)
+    }
+  })
+  turnCount = turnArray.length
+  console.log('turn array', turnArray)
+  console.log('turn count', turnCount)
+  console.log('board array', boardArray)
+  if (turnCount === (5 || 7 || 9)) {
+    winCheck('x')
+  } else if (turnCount === (6 || 8)) {
+    winCheck('o')
+  }
 }
 
 module.exports = {
