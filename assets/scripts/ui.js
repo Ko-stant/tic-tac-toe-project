@@ -12,13 +12,15 @@ const isEven = function (i) {
 }
 const boardArray = ['', '', '', '', '', '', '', '', '']
 
+let turnCount = 0
 const winCheck = function (token) {
   if ((boardArray[0] === token && boardArray[1] === token && boardArray[2] === token) || (boardArray[3] === token && boardArray[4] === token && boardArray[5] === token) || (boardArray[6] === token && boardArray[7] === token && boardArray[8] === token) || (boardArray[0] === token && boardArray[3] === token && boardArray[6] === token) || (boardArray[1] === token && boardArray[4] === token && boardArray[7] === token) || (boardArray[2] === token && boardArray[5] === token && boardArray[8] === token) || (boardArray[0] === token && boardArray[4] === token && boardArray[8] === token) || (boardArray[2] === token && boardArray[4] === token && boardArray[6] === token)) {
-    console.log(`${token} is the winner`)
+    return true
+  } else {
+    return false
   }
 }
 
-let turnCount = 0
 const updateCell = function (cellIndex) {
   if (boardArray[cellIndex] === 'x' || boardArray[cellIndex] === 'o') {
     console.log('square is already taken.')
@@ -39,10 +41,20 @@ const updateCell = function (cellIndex) {
   console.log('turn array', turnArray)
   console.log('turn count', turnCount)
   console.log('board array', boardArray)
-  if (turnCount === (5 || 7 || 9)) {
-    winCheck('x')
+  if (turnCount === 9) {
+    if (winCheck('x') === true) {
+      console.log('x won')
+    } else {
+      console.log('there was a tie')
+    }
+  } else if (turnCount === (5 || 7)) {
+    if (winCheck('x') === true) {
+      console.log('x won')
+    }
   } else if (turnCount === (6 || 8)) {
-    winCheck('o')
+    if (winCheck('o') === true) {
+      console.log('o won')
+    }
   }
 }
 
