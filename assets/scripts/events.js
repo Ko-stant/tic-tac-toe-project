@@ -7,9 +7,9 @@ const ui = require('./ui')
 // console.log(getFormFields)
 
 const onCellSelect = function (event) {
-  const cellData = event.target.dataset
+  const cellData = this.dataset
   const cellIndex = cellData.cellIndex
-  ui.updateCell(cellIndex)
+  ui.gameAction(cellIndex)
 }
 
 const addHandlers = function () {

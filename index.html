@@ -12,32 +12,37 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <header class="heading">
+      <header class="col-md-12 header">
         <div class="col-md-2 ">Text</div>
         <div class="col-md-8 title">Text</div>
         <div class="col-md-2">
           <button type="button" class="btn btn-primary" id="drop-down">TempText</button>
         </div>
       </header>
-      <div id="game-field" class="jumbotron container game-field">
-        <div class="row">
-          <div class="col-md-4 game-board" data-cell-index='0'><p class="token">0</p></div>
-          <div class="col-md-4 game-board" data-cell-index='1'><p class="token">1</p></div>
-          <div class="col-md-4 game-board" data-cell-index='2'><p class="token">2</p></div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 game-board" data-cell-index='3'><p class="token">3</p></div>
-          <div class="col-md-4 game-board" data-cell-index='4'><p class="token">4</p></div>
-          <div class="col-md-4 game-board" data-cell-index='5'><p class="token">5</p></div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 game-board" data-cell-index='6'><p class="token">6</p></div>
-          <div class="col-md-4 game-board" data-cell-index='7'><p class="token">7</p></div>
-          <div class="col-md-4 game-board" data-cell-index='8'><p class="token">8</p></div>
-        </div>
+      <div>
+        <p class="turn-message message"></p>
       </div>
-      <div class="message"id="message">
-        <p>text</p>
+      <table id="game-field" class="game-field">
+        <tbody>
+          <tr class="row upper">
+            <td class="game-board" data-cell-index='0'><p class="token"></p></td>
+            <td class="game-board" data-cell-index='1'><p class="token"></p></td>
+            <td class="game-board" data-cell-index='2'><p class="token"></p></td>
+          </tr>
+          <tr class="row middle">
+            <td class="game-board" data-cell-index='3'><p class="token"></p></td>
+            <td class="game-board" data-cell-index='4'><p class="token"></p></td>
+            <td class="game-board" data-cell-index='5'><p class="token"></p></td>
+          </tr>
+          <tr class="row lower">
+            <td class="game-board" data-cell-index='6'><p class="token"></p></td>
+            <td class="game-board" data-cell-index='7'><p class="token"></p></td>
+            <td class="game-board" data-cell-index='8'><p class="token"></p></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <p class="result-message message"></p>
       </div>
     </body>
 </html>

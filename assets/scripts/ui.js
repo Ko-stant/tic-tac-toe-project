@@ -21,15 +21,29 @@ const winCheck = function (token) {
   }
 }
 
+let over = false
+
+const turnMessage = function () {
+  if (isEven(turnCount)) {
+    $('.turn-message').text('Current turn is: X')
+  } else {
+    $('.turn-message').text('Current turn is: O')
+  }
+}
+
+turnMessage()
+
 const updateCell = function (cellIndex) {
   if (boardArray[cellIndex] === 'x' || boardArray[cellIndex] === 'o') {
-    console.log('square is already taken.')
+    $('.result-message').text('That square is already taken.')
   } else if (isEven(turnCount) === true) {
     boardArray[cellIndex] = 'x'
-    $('.game-board')[cellIndex].innerHTML = 'x'
+    $('.game-board')[cellIndex].innerHTML = '<p class="token">X</p>'
+    $('.result-message').text('')
   } else if (isEven(turnCount) === false) {
     boardArray[cellIndex] = 'o'
-    $('.game-board')[cellIndex].innerHTML = 'o'
+    $('.game-board')[cellIndex].innerHTML = '<p class="token">O</p>'
+    $('.result-message').text('')
   }
   const turnArray = []
   boardArray.forEach(function (value) {
@@ -38,26 +52,36 @@ const updateCell = function (cellIndex) {
     }
   })
   turnCount = turnArray.length
-  console.log('turn array', turnArray)
-  console.log('turn count', turnCount)
-  console.log('board array', boardArray)
   if (turnCount === 9) {
     if (winCheck('x') === true) {
-      console.log('x won')
+      $('.result-message').text('X has won!')
+      over = true
     } else {
-      console.log('there was a tie')
+      $('.result-message').text('There was a tie!')
+      over = true
     }
   } else if (turnCount === 5 || turnCount === 7) {
     if (winCheck('x') === true) {
-      console.log('x won')
+      $('.result-message').text('X has won!')
+      over = true
     }
   } else if (turnCount === 6 || turnCount === 8) {
     if (winCheck('o') === true) {
-      console.log('o won')
+      $('.result-message').text('O has won!')
+      over = true
     }
+  }
+  turnMessage()
+}
+
+const gameAction = function (cellIndex) {
+  if (over) {
+    $('.turn-message').text('The game has finished. Select new game.')
+  } else {
+    updateCell(cellIndex)
   }
 }
 
 module.exports = {
-  updateCell
+  gameAction
 }
