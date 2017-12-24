@@ -12,8 +12,13 @@ const onCellSelect = function (event) {
   ui.gameAction(cellIndex)
 }
 
+const onNewGame = function (event) {
+  ui.newGame()
+}
+
 const addHandlers = function () {
   $('.game-board').on('click', onCellSelect)
+  $('#new-game').on('click', onNewGame)
 }
 
 module.exports = {

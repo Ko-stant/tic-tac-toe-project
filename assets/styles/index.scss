@@ -2,11 +2,15 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 $black: #000;
+$board-background: #8c9aff;
+$message-color: #ff959a;
+$green: #0d0;
+$red: #d00;
 
 body {
   height: auto;
   max-width: 1200px;
-  width: 90%;
+  width: 100%;
 }
 
 header > div {
@@ -19,15 +23,32 @@ table {
   margin: auto;
 }
 
-.message {
-  border: 1px solid $black;
+.new-game {
   clear: both;
+  text-align: center;
+}
+
+.btn-secondary {
+  background-color: $black;
+  border: 1px solid $black;
+  color: $red;
+  margin: auto;
+  &:hover {
+    color: $green;
+  }
+}
+
+.message {
+  clear: both;
+  color: $message-color;
+  font-size: 1.5em;
   margin: 0 auto;
   text-align: center;
   width: 450px;
 }
 
 .game-board {
+  background-color: $board-background;
   border: 1px solid $black;
   height: 150px;
   min-height: 150px;
