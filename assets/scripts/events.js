@@ -4,8 +4,6 @@ const getFormFields = require(`../../lib/get-form-fields`)
 const api = require(`./api`)
 const ui = require('./ui')
 
-// console.log(getFormFields)
-
 const onCellSelect = function (event) {
   const cellData = this.dataset
   const cellIndex = cellData.cellIndex

@@ -11,5 +11,3 @@ $(() => {
 $(() => {
   events.addHandlers()
 })
-
-let boardArray = []

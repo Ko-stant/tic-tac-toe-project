@@ -33,6 +33,8 @@ table {
   border: 1px solid $black;
   color: $red;
   margin: auto;
+
+  &:focus,
   &:hover {
     color: $green;
   }

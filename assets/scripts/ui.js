@@ -89,7 +89,7 @@ const updateCell = function (cellIndex) {
     }
   }
 }
-
+// main game function call. prevents game from continuing once it has completed.
 const gameAction = function (cellIndex) {
   if (over) {
     $('.turn-message').text('The game has finished. Select new game.')
