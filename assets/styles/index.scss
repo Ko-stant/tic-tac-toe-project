@@ -40,6 +40,10 @@ table {
   }
 }
 
+.sign-up-btn {
+  float: right;
+}
+
 .message {
   clear: both;
   color: $message-color;
@@ -93,7 +97,7 @@ table {
   background-color: #fefefe;
   border: 1px solid #888;
   margin: auto;
-  padding: 20px;
+  padding: 40px;
   width: 80%;
 }
 
@@ -116,5 +120,5 @@ table {
     color: #000;
     cursor: pointer;
     text-decoration: none;
-}
+  }
 }
