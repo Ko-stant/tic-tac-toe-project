@@ -6,6 +6,39 @@ let boardArray = ['', '', '', '', '', '', '', '', '']
 let turnCount = 0
 let over = false
 
+const clearFields = function () {
+  $('input:text, input:password').val('')
+}
+
+const signUpSuccess = function (data) {
+  console.log(data)
+  clearFields()
+}
+
+const signInSuccess = function (data) {
+  console.log(data)
+  $('.sign-in-message').html(`
+    <p>Signed in Successfully.</p>
+    `)
+  $('.sign-in-message').css('color', '#f00')
+  store.user = data.user
+  clearFields()
+}
+
+const signInFailure = function (error) {
+  console.error(error)
+  $('.sign-in-message').html(`
+    <p>Incorrect Username/Password combination.</p>
+    `)
+  $('.sign-in-message').css('color', '#f00')
+  clearFields()
+}
+
+const signUpFailure = function (error) {
+  console.error(error)
+  clearFields()
+}
+
 const newGame = function () {
   boardArray = ['', '', '', '', '', '', '', '', '']
   turnCount = 0
@@ -92,13 +125,17 @@ const updateCell = function (cellIndex) {
 // main game function call. prevents game from continuing once it has completed.
 const gameAction = function (cellIndex) {
   if (over) {
-    $('.turn-message').text('The game has finished. Select new game.')
+    $('.turn-message').text('The game has finished. Select "New Game".')
   } else {
     updateCell(cellIndex)
   }
 }
 
 module.exports = {
+  signUpSuccess,
+  signInSuccess,
+  signUpFailure,
+  signInFailure,
   gameAction,
   newGame
 }

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# sh scripts/games/show.sh
+# sh scripts/games/over-get.sh
 
-curl "http://tic-tac-toe.wdibos.com/games" \
+curl "http://tic-tac-toe.wdibos.com/games/?over=${OVER}" \
   --include \
   --request GET \
   --header "Content-Type: application/json" \

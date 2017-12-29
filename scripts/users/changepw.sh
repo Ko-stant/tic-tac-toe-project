@@ -2,7 +2,7 @@
 
 # ID=2 sh scripts/users/changepw.sh
 
-curl "http://tic-tac-toe.wdibos.com/change-passwor/${ID}" \
+curl "http://tic-tac-toe.wdibos.com/change-password/${ID}" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \

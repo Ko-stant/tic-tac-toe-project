@@ -19,6 +19,37 @@
           <button type="button" class="btn  btn-primary" id="drop-down">TempText</button>
         </div>
       </header>
+      <button id="sign-in">Sign In</button>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close close-sign-in">&times;</span>
+          <form id="sign-in-form">
+            <fieldset>
+              <legend>Sign in!</legend>
+              <input type="text" name="credentials[email]" placeholder="Enter Email">
+              <input type="password" name="credentials[password]" placeholder="Enter Password">
+              <input type="submit" name="submit" value="Sign In!">
+            </fieldset>
+          </form>
+          <div class="sign-in-message"></div>
+          <button id="sign-up">Create Account</button>
+      	  <div id="myModal2" class="modal">
+       		  <div class="modal-content2">
+         		  <span class="close close-sign-up">&times;</span>
+              <form id="sign-up-form">
+                <fieldset>
+                  <legend>Sign up!</legend>
+                  <input type="text" name="credentials[email]" placeholder="Enter Email">
+                  <input type="password" name="credentials[password]" placeholder="Enter Password">
+                  <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                  <input type="submit" name="submit" value="Sign up!">
+                </fieldset>
+              </form>
+              <div class="sign-up-message"></div>
+        	  </div>
+      	  </div>
+        </div>
+      </div>
       <div class="new-game">
         <button type="button" class="btn btn-secondary" id="new-game">New Game</button>
       </div>
