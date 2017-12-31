@@ -1,7 +1,6 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Mr+Bedfort');
-
 $black: #000;
 $board-background: #8c9aff;
 $message-color: #ff959a;
@@ -36,7 +35,6 @@ table {
 }
 
 .game {
-  border: 1px solid $black;
   box-sizing: border-box;
   margin-top: 100px;
   min-width: 453px;
@@ -68,7 +66,6 @@ table {
   width: 450px;
 }
 
-
 .game-board {
   background-color: $board-background;
   border: 1px solid $black;
@@ -90,8 +87,8 @@ table {
   font-size: 28px;
   font-weight: bold;
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: #000;
     cursor: pointer;
     text-decoration: none;

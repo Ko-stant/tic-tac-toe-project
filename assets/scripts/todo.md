@@ -1,15 +1,5 @@
 ### TODO
 
-Create UI update to adjust 'sign in' button to be 'account' nav on sign in success.
-Account should have three options
--game stats - bring up modal win/tie/loss record and state that it is only for completed games
--change password - should bring up modal
--sign out
--sign out needs to clear store
-
-On create account success, close create account screen and leave sign in screen open
--potentially push message to sign-in modal to state 'account create success, please sign in.'
-
 sign in should create a new game
 
 Create game should trigger API call to create new game as well updating the browser window like it does now.

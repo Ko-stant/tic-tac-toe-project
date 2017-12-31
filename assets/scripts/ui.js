@@ -16,13 +16,11 @@ const signUpSuccess = function (data) {
 }
 
 const signInSuccess = function (data) {
-  console.log(data)
   $('.sign-in-nav').css('display', 'none')
   $('#navbar').attr('id', 'sign-in-nav')
   $('.account-nav').css('display', 'block')
   $('#account-nav').attr('id', 'navbar')
   store.user = data.user
-  console.log(store)
   clearFields()
 }
 
@@ -51,7 +49,6 @@ const signOutSuccess = function () {
   $('.sign-in-nav').css('display', 'block')
   $('#sign-in-nav').attr('id', 'navbar')
   store.user = {}
-  console.log(store)
 }
 
 const signOutFailure = function (error) {
