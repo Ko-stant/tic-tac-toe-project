@@ -4,12 +4,32 @@ const getFormFields = require(`../../lib/get-form-fields`)
 const api = require(`./api`)
 const ui = require('./ui')
 
-let boardArray = ['', '', '', '', '', '', '', '', '']
+const games = {
+  id: null,
+  cells: ['', '', '', '', '', '', '', '', ''],
+  over: false,
+  player_x: {
+    id: null,
+    email: null
+  },
+  player_o: {
+    id: null,
+    email: null
+  }
+}
+
+let cells = games.cells
+let over = games.over
+let playerX = games.player_x
+let playerO = games.player_o
+const playerAvatarX = 'x'
+const playerAvatarO = 'o'
+
 let turnCount = 0
-let over = false
+const gameOver = () => $('.turn-message').text('The game has finished. Select "New Game".')
 
 const newGame = function () {
-  boardArray = ['', '', '', '', '', '', '', '', '']
+  cells = ['', '', '', '', '', '', '', '', '']
   turnCount = 0
   over = false
   $('.token').text('')
@@ -19,7 +39,7 @@ const newGame = function () {
 
 const gameEnd = function (boolean) {
   if (boolean) {
-    $('.turn-message').text('The game has finished. Select "New Game".')
+    gameOver()
     over = true
   }
 }
@@ -34,7 +54,7 @@ const isEven = function (i) {
 }
 
 const winCheck = function (token) {
-  if ((boardArray[0] === token && boardArray[1] === token && boardArray[2] === token) || (boardArray[3] === token && boardArray[4] === token && boardArray[5] === token) || (boardArray[6] === token && boardArray[7] === token && boardArray[8] === token) || (boardArray[0] === token && boardArray[3] === token && boardArray[6] === token) || (boardArray[1] === token && boardArray[4] === token && boardArray[7] === token) || (boardArray[2] === token && boardArray[5] === token && boardArray[8] === token) || (boardArray[0] === token && boardArray[4] === token && boardArray[8] === token) || (boardArray[2] === token && boardArray[4] === token && boardArray[6] === token)) {
+  if ((cells[0] === token && cells[1] === token && cells[2] === token) || (cells[3] === token && cells[4] === token && cells[5] === token) || (cells[6] === token && cells[7] === token && cells[8] === token) || (cells[0] === token && cells[3] === token && cells[6] === token) || (cells[1] === token && cells[4] === token && cells[7] === token) || (cells[2] === token && cells[5] === token && cells[8] === token) || (cells[0] === token && cells[4] === token && cells[8] === token) || (cells[2] === token && cells[4] === token && cells[6] === token)) {
     return true
   } else {
     return false
@@ -43,58 +63,62 @@ const winCheck = function (token) {
 
 const turnMessage = function () {
   if (isEven(turnCount)) {
-    $('.turn-message').text('Current turn is: X')
+    $('.turn-message').text(`Current turn is: ${playerAvatarX.toUpperCase()}`)
   } else {
-    $('.turn-message').text('Current turn is: O')
+    $('.turn-message').text(`Current turn is: ${playerAvatarO.toUpperCase()}`)
   }
 }
 
 turnMessage()
 
-const updateCell = function (cellIndex) {
-  if (boardArray[cellIndex] === 'x' || boardArray[cellIndex] === 'o') {
-    $('.result-message').text('That square is already taken.')
-  } else if (isEven(turnCount)) {
-    boardArray[cellIndex] = 'x'
-    $('.game-board')[cellIndex].innerHTML = '<p class="token">X</p>'
-    $('.result-message').text('')
-  } else if (isEven(turnCount) === false) {
-    boardArray[cellIndex] = 'o'
-    $('.game-board')[cellIndex].innerHTML = '<p class="token">O</p>'
-    $('.result-message').text('')
-  }
+const gameStatus = function () {
   const turnArray = []
-  boardArray.forEach(function (value) {
-    if (value === 'x' || value === 'o') {
+  cells.forEach(function (value) {
+    if (value === playerAvatarX || value === playerO.avatar) {
       turnArray.push(value)
     }
   })
   turnCount = turnArray.length
   turnMessage()
   if (turnCount === 9) {
-    if (winCheck('x') === true) {
-      $('.result-message').text('X has won!')
+    if (winCheck(playerAvatarX) === true) {
+      $('.result-message').text(`${playerAvatarX.toUpperCase()} has won!`)
       gameEnd(true)
     } else {
       $('.result-message').text('There was a tie!')
       gameEnd(true)
     }
   } else if (turnCount === 5 || turnCount === 7) {
-    if (winCheck('x') === true) {
-      $('.result-message').text('X has won!')
+    if (winCheck(playerAvatarX) === true) {
+      $('.result-message').text(`${playerAvatarX.toUpperCase()} has won!`)
       gameEnd(true)
     }
   } else if (turnCount === 6 || turnCount === 8) {
-    if (winCheck('o') === true) {
-      $('.result-message').text('O has won!')
+    if (winCheck(playerO.avatar) === true) {
+      $('.result-message').text(`${playerAvatarO.toUpperCase()} has won!`)
       gameEnd(true)
     }
   }
 }
+
+const updateCell = function (cellIndex) {
+  if (cells[cellIndex] === playerAvatarX || cells[cellIndex] === playerO.avatar) {
+    $('.result-message').text('That square is already taken.')
+  } else if (isEven(turnCount)) {
+    cells[cellIndex] = playerAvatarX
+    $('.game-board')[cellIndex].innerHTML = '<p class="token">X</p>'
+    $('.result-message').text('')
+  } else if (isEven(turnCount) === false) {
+    cells[cellIndex] = playerO.avatar
+    $('.game-board')[cellIndex].innerHTML = '<p class="token">O</p>'
+    $('.result-message').text('')
+  }
+  gameStatus()
+}
 // main game function call. prevents game from continuing once it has completed.
 const gameAction = function (cellIndex) {
   if (over) {
-    $('.turn-message').text('The game has finished. Select "New Game".')
+    gameOver()
   } else {
     updateCell(cellIndex)
   }
@@ -103,7 +127,7 @@ const gameAction = function (cellIndex) {
 const onCellSelect = function (event) {
   const cellData = this.dataset
   const cellIndex = cellData.cellIndex
-  wgameAction(cellIndex)
+  gameAction(cellIndex)
 }
 
 const onNewGame = function (event) {

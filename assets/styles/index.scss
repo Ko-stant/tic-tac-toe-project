@@ -2,20 +2,18 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Mr+Bedfort');
 $black: #000;
+$background: rgba(178, 152, 62, .6);
 $board-background: #8c9aff;
-$message-color: #ff959a;
+$message-color: #464d7f;
 $green: #0d0;
 $red: #d00;
 
 body {
+  background-color: $background;
   height: auto;
   max-width: 1200px;
   min-width: 453px;
   width: 100%;
-}
-
-header {
-  min-width: 453px;
 }
 
 table {
@@ -34,9 +32,16 @@ table {
   width: 300px;
 }
 
+.game-title {
+  clear: both;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  margin-top: 70px;
+  text-align: center;
+}
+
 .game {
   box-sizing: border-box;
-  margin-top: 100px;
+  margin-top: px;
   min-width: 453px;
 }
 
@@ -60,37 +65,32 @@ table {
 .message {
   clear: both;
   color: $message-color;
-  font-size: 1.5em;
+  font-size: 1.25em;
+  height: 1.5em;
   margin: 0 auto;
   text-align: center;
-  width: 450px;
+  width: 375px;
+}
+
+.game-icon {
+  filter: invert(100%);
+  height: 120%;
+  width: 50px;
 }
 
 .game-board {
   background-color: $board-background;
   border: 1px solid $black;
   font-family: 'Mr Bedfort', cursive;
-  height: 150px;
-  min-height: 150px;
-  min-width: 150px;
-  width: 150px;
+  height: 125px;
+  min-height: 125px;
+  min-width: 125px;
+  width: 125px;
 }
 
 .token {
-  font-size: 600%;
+  color: $black;
+  font-size: 500%;
+  margin: 0;
   text-align: center;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-
-  &:focus,
-  &:hover {
-    color: #000;
-    cursor: pointer;
-    text-decoration: none;
-  }
 }

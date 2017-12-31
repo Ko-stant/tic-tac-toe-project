@@ -22,7 +22,9 @@
     			<span class="icon-bar"></span>
     			<span class="icon-bar"></span>
 			</button>
-        <a class="navbar-brand">Tic-Tac-Toe</a>
+        <a class="navbar-brand">
+          <img src="./assets/scripts/images/tic.png" alt="game-icon" class="game-icon"/>
+        </a>
       </div>
       <div class="sign-in-nav">
         <div id="navbar" class="collapse navbar-collapse">
@@ -135,12 +137,15 @@
       </div>
     </div>
   </nav>
+  <div class="game-title">
+    <h2>Tic-Tac-Toe</h2>
+  </div>
   <div class="game">
     <div class="new-game">
       <button type="button" class="btn btn-secondary" id="new-game">New Game</button>
     </div>
     <div>
-      <p class="turn-message message"></p>
+      <p class="result-message message"></p>
     </div>
     <table id="game-field" class="game-field">
       <tbody>
@@ -180,7 +185,7 @@
       </tbody>
     </table>
     <div>
-      <p class="result-message message"></p>
+      <p class="turn-message message"></p>
     </div>
   </div>
 </body>
