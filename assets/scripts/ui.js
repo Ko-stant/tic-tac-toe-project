@@ -7,7 +7,6 @@ const clearFields = function () {
 }
 
 const signUpSuccess = function (data) {
-  console.log(data)
   clearFields()
 }
 
@@ -18,6 +17,18 @@ const signInSuccess = function (data) {
   $('#account-nav').attr('id', 'navbar')
   store.user = data.user
   clearFields()
+}
+
+const createGameSuccess = function (data) {
+  store.game = data.game
+}
+
+const updateGameSuccess = function (data) {
+  store.game = data.game
+}
+
+const updateGameFailure = function (error) {
+  console.error(error)
 }
 
 const signInFailure = function (error) {
@@ -59,5 +70,8 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  createGameSuccess,
+  updateGameSuccess,
+  updateGameFailure
 }

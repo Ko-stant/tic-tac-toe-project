@@ -3,29 +3,12 @@
 const getFormFields = require(`../../lib/get-form-fields`)
 const api = require(`./api`)
 const ui = require('./ui')
+const store = require('./store')
 
-const games = {
-  id: null,
-  cells: ['', '', '', '', '', '', '', '', ''],
-  over: false,
-  player_x: {
-    id: null,
-    email: null
-  },
-  player_o: {
-    id: null,
-    email: null
-  }
-}
-
-let cells = games.cells
-let over = games.over
-let playerX = games.player_x
-let playerO = games.player_o
-const playerAvatarX = 'x'
-const playerAvatarO = 'o'
-
+let cells = ['', '', '', '', '', '', '', '', '']
+let over = false
 let turnCount = 0
+
 const gameOver = () => $('.turn-message').text('The game has finished. Select "New Game".')
 
 const newGame = function () {
@@ -60,6 +43,16 @@ const winCheck = function (token) {
     return false
   }
 }
+const playerAvatarX = 'x'
+const playerAvatarO = 'o'
+
+const playerAvatar = function (turnCount) {
+  if (isEven(turnCount - 1)) {
+    return 'x'
+  } else {
+    return 'o'
+  }
+}
 
 const turnMessage = function () {
   if (isEven(turnCount)) {
@@ -68,13 +61,23 @@ const turnMessage = function () {
     $('.turn-message').text(`Current turn is: ${playerAvatarO.toUpperCase()}`)
   }
 }
-
 turnMessage()
 
-const gameStatus = function () {
+const updateCell = function (cellIndex) {
+  if (cells[cellIndex] === playerAvatarX || cells[cellIndex] === playerAvatarO) {
+    $('.result-message').text('That square is already taken.')
+  } else if (isEven(turnCount)) {
+    cells[cellIndex] = playerAvatarX
+    $('.game-board')[cellIndex].innerHTML = '<p class="token">X</p>'
+    $('.result-message').text('')
+  } else if (isEven(turnCount) === false) {
+    cells[cellIndex] = playerAvatarO
+    $('.game-board')[cellIndex].innerHTML = '<p class="token">O</p>'
+    $('.result-message').text('')
+  }
   const turnArray = []
   cells.forEach(function (value) {
-    if (value === playerAvatarX || value === playerO.avatar) {
+    if (value === playerAvatarX || value === playerAvatarO) {
       turnArray.push(value)
     }
   })
@@ -94,26 +97,27 @@ const gameStatus = function () {
       gameEnd(true)
     }
   } else if (turnCount === 6 || turnCount === 8) {
-    if (winCheck(playerO.avatar) === true) {
+    if (winCheck(playerAvatarO) === true) {
       $('.result-message').text(`${playerAvatarO.toUpperCase()} has won!`)
       gameEnd(true)
     }
   }
-}
-
-const updateCell = function (cellIndex) {
-  if (cells[cellIndex] === playerAvatarX || cells[cellIndex] === playerO.avatar) {
-    $('.result-message').text('That square is already taken.')
-  } else if (isEven(turnCount)) {
-    cells[cellIndex] = playerAvatarX
-    $('.game-board')[cellIndex].innerHTML = '<p class="token">X</p>'
-    $('.result-message').text('')
-  } else if (isEven(turnCount) === false) {
-    cells[cellIndex] = playerO.avatar
-    $('.game-board')[cellIndex].innerHTML = '<p class="token">O</p>'
-    $('.result-message').text('')
+  const turnValue = playerAvatar(turnCount)
+  if (store.user) {
+    const data = {
+      game: {
+        id: store.game.id,
+        cell: {
+          index: cellIndex,
+          value: turnValue
+        },
+        over
+      }
+    }
+    api.updateGame(data)
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
   }
-  gameStatus()
 }
 // main game function call. prevents game from continuing once it has completed.
 const gameAction = function (cellIndex) {
@@ -130,8 +134,13 @@ const onCellSelect = function (event) {
   gameAction(cellIndex)
 }
 
-const onNewGame = function (event) {
+const onNewGame = function () {
   newGame()
+  if (store.user) {
+    api.createGame()
+      .then(ui.createGameSuccess)
+      .catch(ui.createGameFailure)
+  }
 }
 
 const onSignUp = function (event) {
@@ -145,8 +154,12 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
+
   api.signIn(data)
     .then(ui.signInSuccess)
+    .then(api.createGame)
+    .then(ui.createGameSuccess)
+    .then(newGame())
     .catch(ui.signInFailure)
 }
 
@@ -162,6 +175,7 @@ const onSignOut = function (event) {
   event.preventDefault()
   api.signOut()
     .then(ui.signOutSuccess)
+    .then(newGame())
     .catch(ui.signOutFailure)
 }
 
@@ -175,5 +189,7 @@ const addHandlers = function () {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onNewGame,
+  newGame
 }
