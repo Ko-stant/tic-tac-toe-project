@@ -14,38 +14,6 @@ const onNewGame = function (event) {
   ui.newGame()
 }
 
-const signInModal = function (event) {
-  $('#sign-in-modal').css('display', 'block')
-}
-
-const signUpModal = function (event) {
-  $('#sign-up-modal').css('display', 'block')
-}
-
-const passwordModal = function (event) {
-  $('#password-modal').css('display', 'block')
-}
-
-const closeSignIn = function (event) {
-  $('#sign-in-modal').css('display', 'none')
-}
-
-const closeSignUp = function (event) {
-  $('#sign-up-modal').css('display', 'none')
-}
-
-const closePassword = function (event) {
-  $('#password-modal').css('display', 'none')
-}
-
-const blurAllModals = function (event) {
-  const modalText = event.target.id
-  if (modalText === 'sign-in-modal' || modalText === 'sign-up-modal') {
-    $('#sign-in-modal').css('display', 'none')
-    $('#sign-up-modal').css('display', 'none')
-  }
-}
-
 const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
@@ -70,19 +38,20 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+const onSignOut = function (event) {
+  event.preventDefault()
+  api.signOut()
+    .then(ui.signOutSuccess)
+    .catch(ui.signOutFailure)
+}
+
 const addHandlers = function () {
   $('.game-board').on('click', onCellSelect)
   $('#new-game').on('click', onNewGame)
-  $('#sign-in').on('click', signInModal)
-  $('#sign-up').on('click', signUpModal)
-  $('#changepw-btn').on('click', passwordModal)
-  $('.close-sign-in').on('click', closeSignIn)
-  $('.close-sign-up').on('click', closeSignUp)
-  $('.close-password').on('click', closePassword)
-  $(window).on('click', blurAllModals)
   $('#sign-up-form').on('submit', onSignUp)
   $('#sign-in-form').on('submit', onSignIn)
-  $('#change-password').on('submit', onChangePassword)
+  $('#change-password-form').on('submit', onChangePassword)
+  $('#sign-out').on('click', onSignOut)
 }
 
 module.exports = {

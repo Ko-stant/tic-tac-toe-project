@@ -7,7 +7,7 @@ let turnCount = 0
 let over = false
 
 const clearFields = function () {
-  $('input:text, input:password').val('')
+  $('input:text, input:password, input[type=email]').val('')
 }
 
 const signUpSuccess = function (data) {
@@ -17,22 +17,17 @@ const signUpSuccess = function (data) {
 
 const signInSuccess = function (data) {
   console.log(data)
-  $('.sign-in-message').html(`
-    <p>Signed in Successfully.</p>
-    `)
-  $('.sign-in-message').css('color', '#f00')
-  $('.sign-in-btn').css('display', 'none')
-  $('.account-btn').css('display', 'block')
+  $('.sign-in-nav').css('display', 'none')
+  $('#navbar').attr('id', 'sign-in-nav')
+  $('.account-nav').css('display', 'block')
+  $('#account-nav').attr('id', 'navbar')
   store.user = data.user
+  console.log(store)
   clearFields()
 }
 
 const signInFailure = function (error) {
   console.error(error)
-  $('.sign-in-message').html(`
-    <p>Incorrect Username/Password combination.</p>
-    `)
-  $('.sign-in-message').css('color', '#f00')
   clearFields()
 }
 
@@ -42,20 +37,25 @@ const signUpFailure = function (error) {
 }
 
 const changePasswordSuccess = function (data) {
-  $('.change-password-message').html(`
-    <p>Password Changed Successfully.</p>
-    `)
-  $('.change-password-message').css('color', '#f00')
   clearFields()
 }
 
 const changePasswordFailure = function (error) {
   console.error(error)
-  $('.change-password-message').html(`
-    <p>Password Change Failed.</p>
-    `)
-  $('.change-password-message').css('color', '#f00')
   clearFields()
+}
+
+const signOutSuccess = function () {
+  $('.account-nav').css('display', 'none')
+  $('#navbar').attr('id', 'account-nav')
+  $('.sign-in-nav').css('display', 'block')
+  $('#sign-in-nav').attr('id', 'navbar')
+  store.user = {}
+  console.log(store)
+}
+
+const signOutFailure = function (error) {
+  console.error(error)
 }
 
 const newGame = function () {
@@ -157,6 +157,8 @@ module.exports = {
   signInFailure,
   changePasswordSuccess,
   changePasswordFailure,
+  signOutSuccess,
+  signOutFailure,
   gameAction,
   newGame
 }
