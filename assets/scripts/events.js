@@ -63,6 +63,7 @@ const turnMessage = function () {
 }
 turnMessage()
 
+let apiCheck = 0
 const updateCell = function (cellIndex) {
   if (cells[cellIndex] === playerAvatarX || cells[cellIndex] === playerAvatarO) {
     $('.result-message').text('That square is already taken.')
@@ -81,6 +82,7 @@ const updateCell = function (cellIndex) {
       turnArray.push(value)
     }
   })
+
   turnCount = turnArray.length
   turnMessage()
   if (turnCount === 9) {
@@ -114,9 +116,12 @@ const updateCell = function (cellIndex) {
         over
       }
     }
-    api.updateGame(data)
-      .then(ui.updateGameSuccess)
-      .catch(ui.updateGameFailure)
+    if (apiCheck !== turnCount) {
+      apiCheck += 1
+      api.updateGame(data)
+        .then(ui.updateGameSuccess)
+        .catch(ui.updateGameFailure)
+    }
   }
 }
 // main game function call. prevents game from continuing once it has completed.
