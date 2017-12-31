@@ -21,6 +21,8 @@ const signInSuccess = function (data) {
     <p>Signed in Successfully.</p>
     `)
   $('.sign-in-message').css('color', '#f00')
+  $('.sign-in-btn').css('display', 'none')
+  $('.account-btn').css('display', 'block')
   store.user = data.user
   clearFields()
 }
@@ -36,6 +38,23 @@ const signInFailure = function (error) {
 
 const signUpFailure = function (error) {
   console.error(error)
+  clearFields()
+}
+
+const changePasswordSuccess = function (data) {
+  $('.change-password-message').html(`
+    <p>Password Changed Successfully.</p>
+    `)
+  $('.change-password-message').css('color', '#f00')
+  clearFields()
+}
+
+const changePasswordFailure = function (error) {
+  console.error(error)
+  $('.change-password-message').html(`
+    <p>Password Change Failed.</p>
+    `)
+  $('.change-password-message').css('color', '#f00')
   clearFields()
 }
 
@@ -136,6 +155,8 @@ module.exports = {
   signInSuccess,
   signUpFailure,
   signInFailure,
+  changePasswordSuccess,
+  changePasswordFailure,
   gameAction,
   newGame
 }

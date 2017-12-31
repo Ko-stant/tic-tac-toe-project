@@ -15,25 +15,34 @@ const onNewGame = function (event) {
 }
 
 const signInModal = function (event) {
-  $('#myModal').css('display', 'block')
+  $('#sign-in-modal').css('display', 'block')
 }
 
 const signUpModal = function (event) {
-  $('#myModal2').css('display', 'block')
+  $('#sign-up-modal').css('display', 'block')
+}
+
+const passwordModal = function (event) {
+  $('#password-modal').css('display', 'block')
 }
 
 const closeSignIn = function (event) {
-  $('#myModal').css('display', 'none')
+  $('#sign-in-modal').css('display', 'none')
 }
 
 const closeSignUp = function (event) {
-  $('#myModal2').css('display', 'none')
+  $('#sign-up-modal').css('display', 'none')
+}
+
+const closePassword = function (event) {
+  $('#password-modal').css('display', 'none')
 }
 
 const blurAllModals = function (event) {
-  if (event.target.id === 'myModal' || event.target.id === 'myModal2') {
-    $('#myModal').css('display', 'none')
-    $('#myModal2').css('display', 'none')
+  const modalText = event.target.id
+  if (modalText === 'sign-in-modal' || modalText === 'sign-up-modal') {
+    $('#sign-in-modal').css('display', 'none')
+    $('#sign-up-modal').css('display', 'none')
   }
 }
 
@@ -53,16 +62,27 @@ const onSignIn = function (event) {
     .catch(ui.signInFailure)
 }
 
+const onChangePassword = function (event) {
+  const data = getFormFields(this)
+  event.preventDefault()
+  api.changePassword(data)
+    .then(ui.changePasswordSuccess)
+    .catch(ui.changePasswordFailure)
+}
+
 const addHandlers = function () {
   $('.game-board').on('click', onCellSelect)
   $('#new-game').on('click', onNewGame)
   $('#sign-in').on('click', signInModal)
   $('#sign-up').on('click', signUpModal)
+  $('#changepw-btn').on('click', passwordModal)
   $('.close-sign-in').on('click', closeSignIn)
   $('.close-sign-up').on('click', closeSignUp)
+  $('.close-password').on('click', closePassword)
   $(window).on('click', blurAllModals)
   $('#sign-up-form').on('submit', onSignUp)
   $('#sign-in-form').on('submit', onSignIn)
+  $('#change-password').on('submit', onChangePassword)
 }
 
 module.exports = {

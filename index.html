@@ -1,82 +1,141 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body class="container-fluid">
-      <header class="col-md-12 header">
-        <div class="col-xs-2 ">Text</div>
-        <div class="col-xs-8 title">Text</div>
-        <div class="col-xs-2">
-          <button type="button" class="btn  btn-primary" id="drop-down">TempText</button>
-        </div>
-      </header>
-      <button id="sign-in">Sign In</button>
-      <div id="myModal" class="modal">
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body class="container-fluid">
+  <header class="col-md-12">
+    <div class="col-xs-2 head">
+      <img class="head-image" src="./assets/images/tic.png" alt="Tic-Tac-Toe">
+    </div>
+    <div class="col-xs-8 head">
+      <p class="title">A Game of Tic-Tac-Toe</p>
+    </div>
+    <div class="col-xs-2 head">
+      <button id="sign-in" class="sign-in-btn" type="button">Sign In</button>
+      <div class="dropdown account-btn">
+        <button id="account" class="account-btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Account<span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+          <li role="presentation">
+            <button id="changepw-btn" class="changepw-btn" role="menuitem" tabindex="-1">Change Password</button>
+            <div id="password-modal" class="modal">
+              <div class="modal-content">
+                <span class="close close-password">&times;</span>
+                <form id="change-password">
+                  <fieldset>
+                    <legend>Change Password!</legend>
+                    <input type="password" name="passwords[old]" placeholder="Enter Old Password">
+                    <br>
+                    <input type="password" name="passwords[new]" placeholder="Enter New Password">
+                    <br>
+                    <input type="submit" name="submit" value="Change Password!">
+                  </fieldset>
+                </form>
+                <div class="change-password-message"></div>
+              </div>
+            </div>
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Game Stats</a></li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sign Out</a></li>
+        </ul>
+      </div>
+      <div id="sign-in-modal" class="modal">
         <div class="modal-content">
           <span class="close close-sign-in">&times;</span>
           <form id="sign-in-form">
             <fieldset>
               <legend>Sign in!</legend>
               <input type="text" name="credentials[email]" placeholder="Enter Email">
+              <br>
               <input type="password" name="credentials[password]" placeholder="Enter Password">
+              <br>
               <input type="submit" name="submit" value="Sign In!">
             </fieldset>
           </form>
           <button id="sign-up" class="sign-up-btn">Create Account</button>
           <div class="sign-in-message"></div>
-      	  <div id="myModal2" class="modal">
-       		  <div class="modal-content2">
-         		  <span class="close close-sign-up">&times;</span>
+          <div id="sign-up-modal" class="modal">
+            <div class="modal-content">
+              <span class="close close-sign-up">&times;</span>
               <form id="sign-up-form">
                 <fieldset>
                   <legend>Sign up!</legend>
                   <input type="text" name="credentials[email]" placeholder="Enter Email">
+                  <br>
                   <input type="password" name="credentials[password]" placeholder="Enter Password">
+                  <br>
                   <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                  <br>
                   <input type="submit" name="submit" value="Sign up!">
                 </fieldset>
               </form>
               <div class="sign-up-message"></div>
-        	  </div>
-      	  </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="new-game">
-        <button type="button" class="btn btn-secondary" id="new-game">New Game</button>
-      </div>
-      <div>
-        <p class="turn-message message"></p>
-      </div>
-      <table id="game-field" class="game-field">
-        <tbody>
-          <tr class="row upper">
-            <td class="game-board" data-cell-index='0'><p class="token"></p></td>
-            <td class="game-board" data-cell-index='1'><p class="token"></p></td>
-            <td class="game-board" data-cell-index='2'><p class="token"></p></td>
-          </tr>
-          <tr class="row middle">
-            <td class="game-board" data-cell-index='3'><p class="token"></p></td>
-            <td class="game-board" data-cell-index='4'><p class="token"></p></td>
-            <td class="game-board" data-cell-index='5'><p class="token"></p></td>
-          </tr>
-          <tr class="row lower">
-            <td class="game-board" data-cell-index='6'><p class="token"></p></td>
-            <td class="game-board" data-cell-index='7'><p class="token"></p></td>
-            <td class="game-board" data-cell-index='8'><p class="token"></p></td>
-          </tr>
-        </tbody>
-      </table>
-      <div>
-        <p class="result-message message"></p>
-      </div>
-    </body>
+    </div>
+  </header>
+  <div class="game">
+    <div class="new-game">
+      <button type="button" class="btn btn-secondary" id="new-game">New Game</button>
+    </div>
+    <div>
+      <p class="turn-message message"></p>
+    </div>
+    <table id="game-field" class="game-field">
+      <tbody>
+        <tr class="row upper">
+          <td class="game-board" data-cell-index='0'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='1'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='2'>
+            <p class="token"></p>
+          </td>
+        </tr>
+        <tr class="row middle">
+          <td class="game-board" data-cell-index='3'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='4'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='5'>
+            <p class="token"></p>
+          </td>
+        </tr>
+        <tr class="row lower">
+          <td class="game-board" data-cell-index='6'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='7'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='8'>
+            <p class="token"></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <p class="result-message message"></p>
+    </div>
+  </div>
+</body>
+
 </html>
