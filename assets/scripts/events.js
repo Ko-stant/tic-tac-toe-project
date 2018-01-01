@@ -194,7 +194,5 @@ const addHandlers = function () {
 }
 
 module.exports = {
-  addHandlers,
-  onNewGame,
-  newGame
+  addHandlers
 }

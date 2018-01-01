@@ -55,7 +55,7 @@ const signOutSuccess = function () {
   $('#navbar').attr('id', 'account-nav')
   $('.sign-in-nav').css('display', 'block')
   $('#sign-in-nav').attr('id', 'navbar')
-  store.user = {}
+  store.user = undefined
 }
 
 const signOutFailure = function (error) {
