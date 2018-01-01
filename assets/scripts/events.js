@@ -83,7 +83,6 @@ const updateCell = function (cellIndex) {
       turnArray.push(value)
     }
   })
-
   turnCount = turnArray.length
   turnMessage()
   if (turnCount === 9) {
@@ -117,8 +116,7 @@ const updateCell = function (cellIndex) {
         over
       }
     }
-    console.log('api', apiCheck)
-    console.log('turnCount', turnCount)
+    // prevents api call if square is taken
     if (apiCheck !== turnCount) {
       apiCheck += 1
       api.updateGame(data)
@@ -127,7 +125,7 @@ const updateCell = function (cellIndex) {
     }
   }
 }
-// main game function call. prevents game from continuing once it has completed.
+// main game function. prevents game from continuing once it has completed.
 const gameAction = function (cellIndex) {
   if (over) {
     gameOver()

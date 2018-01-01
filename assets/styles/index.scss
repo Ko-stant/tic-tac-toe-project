@@ -7,12 +7,12 @@ $board-background: #8c9aff;
 $message-color: #464d7f;
 $green: #0d0;
 $red: #d00;
+$white: #ddd;
 
 body {
   background-color: $background;
   height: auto;
   max-width: 1200px;
-  min-width: 400px;
   width: 100%;
 }
 
@@ -34,16 +34,15 @@ table {
 
 .game-title {
   clear: both;
-  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  font-family: 'Lucida Console', Monaco, monospace;
   margin-top: 70px;
   text-align: center;
 }
 
 .game {
-  border: 1px solid $black;
   box-sizing: border-box;
-  margin-top: px;
   min-width: 400px;
+  user-select: none;
 }
 
 .new-game {
@@ -54,7 +53,7 @@ table {
 .btn-secondary {
   background-color: $black;
   border: 1px solid $black;
-  color: $red;
+  color: $white;
   margin: auto;
 
   &:focus,
@@ -82,6 +81,7 @@ table {
 .game-board {
   background-color: $board-background;
   border: 1px solid $black;
+  cursor: crosshair;
   font-family: 'Mr Bedfort', cursive;
   height: 125px;
   min-height: 125px;
@@ -89,9 +89,66 @@ table {
   width: 125px;
 }
 
+.score-div,
+.player-div {
+  margin-top: .5em;
+}
+
+.player-table {
+  background-color: $board-background;
+
+  .player-head {
+    background-color: $white;
+  }
+  .player {
+    border: 1px solid $black;
+    text-align: center;
+    width: 187px;
+  }
+
+  .player-x,
+  .player-o {
+    margin-top: 5px;
+  }
+}
+
+
+.score-board {
+  background-color: $board-background;
+  border: 1px solid $black;
+  cursor: crosshair;
+  font-family: 'Mr Bedfort', cursive;
+  width: 45px;
+
+  .win-x,
+  .win-o,
+  .tie,
+  .score-title {
+    color: $black;
+    cursor: default;
+    font-size: 24px;
+    margin: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
+
+  .score-title {
+    font-family: 'Lucida Console', Monaco, monospace;
+    font-size: 18px;
+  }
+}
+
+.score-head {
+  font-family: 'Lucida Console', Monaco, monospace;
+  font-size: 10px;
+  text-align: center;
+}
+
 .token {
   color: $black;
-  font-size: 500%;
+  cursor: crosshair;
+  font-size: 64px;
   margin: 0;
+  padding-top: 25px;
   text-align: center;
 }

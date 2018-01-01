@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Example</title>
+  <title>K-Stant Tic-Tac-Toe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Do not add `link` tags-->
@@ -149,7 +149,7 @@
     </div>
     <table id="game-field" class="game-field">
       <tbody>
-        <tr class="row upper">
+        <tr class="row">
           <td class="game-board" data-cell-index='0'>
             <p class="token"></p>
           </td>
@@ -160,7 +160,7 @@
             <p class="token"></p>
           </td>
         </tr>
-        <tr class="row middle">
+        <tr class="row">
           <td class="game-board" data-cell-index='3'>
             <p class="token"></p>
           </td>
@@ -171,7 +171,7 @@
             <p class="token"></p>
           </td>
         </tr>
-        <tr class="row lower">
+        <tr class="row">
           <td class="game-board" data-cell-index='6'>
             <p class="token"></p>
           </td>
@@ -186,6 +186,54 @@
     </table>
     <div>
       <p class="turn-message message"></p>
+    </div>
+    <div class="player-div">
+      <table class="player-table">
+        <thead>
+          <tr class="player-row">
+            <th scope="col" class="player player-head">Player X</th>
+            <th scope="col" class="player player-head">Player O</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row" class="player-row">
+            <td class="player">
+              <p class="player-x">Guest</p>
+            </td>
+            <td class="player">
+              <p class="player-o">Guest</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="score-div">
+      <table class="score-field">
+        <thead>
+          <tr>
+            <th scope="col" class="score-head"></th>
+            <th scope="col" class="score-head">X Wins</th>
+            <th scope="col" class="score-head">Ties</th>
+            <th scope="col" class="score-head">O Wins</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row">
+            <td class="score-board">
+              <p class="score-title">Score: </p>
+            </td>
+            <td class="score-board">
+              <p class="win-x score">0</p>
+            </td>
+            <td class="score-board">
+              <p class="tie score">0</p>
+            </td>
+            <td class="score-board">
+              <p class="win-o score">0</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </body>
