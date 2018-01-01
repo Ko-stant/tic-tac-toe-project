@@ -6,6 +6,12 @@ const clearFields = function () {
   $('input:text, input:password, input[type=email]').val('')
 }
 
+const users = function (email) {
+  const ampersand = email.indexOf('@')
+  const userName = email.substring(0, ampersand)
+  return userName
+}
+
 const signUpSuccess = function (data) {
   clearFields()
 }
@@ -16,6 +22,7 @@ const signInSuccess = function (data) {
   $('.account-nav').css('display', 'block')
   $('#account-nav').attr('id', 'navbar')
   store.user = data.user
+  $('.player-x').text(`${users(store.user.email)}`)
   clearFields()
 }
 
@@ -55,6 +62,8 @@ const signOutSuccess = function () {
   $('#navbar').attr('id', 'account-nav')
   $('.sign-in-nav').css('display', 'block')
   $('#sign-in-nav').attr('id', 'navbar')
+  $('.player-x').text('Guest')
+  $('.player-o').text('Guest')
   store.user = undefined
 }
 
