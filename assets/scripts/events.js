@@ -14,6 +14,7 @@ const gameOver = () => $('.turn-message').text('The game has finished. Select "N
 const newGame = function () {
   cells = ['', '', '', '', '', '', '', '', '']
   turnCount = 0
+  apiCheck = 0
   over = false
   $('.token').text('')
   $('.result-message').text('')
@@ -116,6 +117,8 @@ const updateCell = function (cellIndex) {
         over
       }
     }
+    console.log('api', apiCheck)
+    console.log('turnCount', turnCount)
     if (apiCheck !== turnCount) {
       apiCheck += 1
       api.updateGame(data)
