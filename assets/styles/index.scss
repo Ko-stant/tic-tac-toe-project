@@ -100,6 +100,7 @@ table {
   .player-head {
     background-color: $white;
   }
+
   .player {
     border: 1px solid $black;
     text-align: center;
@@ -109,6 +110,7 @@ table {
   .player-x,
   .player-o {
     margin-top: 5px;
+    text-overflow: ellipsis;
   }
 }
 
