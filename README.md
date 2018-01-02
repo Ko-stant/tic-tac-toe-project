@@ -53,6 +53,7 @@ Completed√
 ### TODO
 
 UI updates to display errors to user and some success messages as well
+There is a bug in production with loading the image file for the game icon
 
 ### FUTURE POTENTIAL
 _these may make it into future updates_
