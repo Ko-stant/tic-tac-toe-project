@@ -22,9 +22,7 @@
     			<span class="icon-bar"></span>
     			<span class="icon-bar"></span>
 			</button>
-        <!-- <a class="navbar-brand">
-          <img src="./assets/images/tic.png" alt="game-icon" class="game-icon"/>
-        </a> -->
+      <h2 class="game-title">Tic-Tac-Toe</h2>
       </div>
       <div class="sign-in-nav">
         <div id="navbar" class="collapse navbar-collapse">
@@ -37,13 +35,13 @@
                     <h3><b>Create Account</b></h3></div>
                   <form id="sign-up-form" autocomplete="off">
                     <div class="form-group">
-                      <input type="email" name="credentials[email]" id="sign-up-email" class="form-control" placeholder="Email Address" value="">
+                      <input type="email" name="credentials[email]" id="sign-up-email" class="form-control input" placeholder="Email Address" value="" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="credentials[password]" id="sign-up-password" class="form-control" placeholder="Password">
+                      <input type="password" name="credentials[password]" id="sign-up-password" class="form-control input" placeholder="Password" minlength="3" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="credentials[password_confirmation]" id="confirm-password" class="form-control" placeholder="Confirm Password">
+                      <input type="password" name="credentials[password_confirmation]" id="confirm-password" class="form-control input" placeholder="Confirm Password" minlength="3" required>
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -64,10 +62,10 @@
                     <h3><b>Sign In</b></h3></div>
                   <form id="sign-in-form" role="form" autocomplete="off">
                     <div class="form-group">
-                      <input type="text" name="credentials[email]" id="sign-in-email" class="form-control" placeholder="Email" value="" autocomplete="off">
+                      <input type="email" name="credentials[email]" id="sign-in-email" class="form-control input" placeholder="Email" value="" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="credentials[password]" id="sign-in-password" class="form-control" placeholder="Password" autocomplete="off">
+                      <input type="password" name="credentials[password]" id="sign-in-password" class="form-control input" placeholder="Password" autocomplete="off" minlength="3" required>
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -109,10 +107,10 @@
                     <h3><b>Change Password</b></h3></div>
                   <form id="change-password-form" autocomplete="off">
                     <div class="form-group">
-                      <input type="password" name="passwords[old]" id="old-password" class="form-control" placeholder="Previous Password">
+                      <input type="password" name="passwords[old]" id="old-password" class="form-control input" placeholder="Previous Password" minlength="3" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="passwords[new]" id="new-password" class="form-control" placeholder="New Password">
+                      <input type="password" name="passwords[new]" id="new-password" class="form-control input" placeholder="New Password" minlength="3" required>
                     </div>
                     <div class="form-group">
                       <div class="row">
