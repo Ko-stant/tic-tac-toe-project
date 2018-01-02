@@ -5,12 +5,14 @@ const api = require(`./api`)
 const ui = require('./ui')
 const store = require('./store')
 
+// gameboard
 let cells = ['', '', '', '', '', '', '', '', '']
 let over = false
 let turnCount = 0
 
 const gameOver = () => $('.turn-message').text('The game has finished. Select "New Game".')
 
+// resets game values, game board, and result message (winner or tie)
 const newGame = function () {
   cells = ['', '', '', '', '', '', '', '', '']
   turnCount = 0
@@ -21,6 +23,7 @@ const newGame = function () {
   turnMessage()
 }
 
+// sets over to true and displays game over message
 const gameEnd = function (boolean) {
   if (boolean) {
     gameOver()
@@ -37,6 +40,7 @@ const isEven = function (i) {
   }
 }
 
+// checks for win based on 'x' or 'o' from local gameboard
 const winCheck = function (token) {
   if ((cells[0] === token && cells[1] === token && cells[2] === token) || (cells[3] === token && cells[4] === token && cells[5] === token) || (cells[6] === token && cells[7] === token && cells[8] === token) || (cells[0] === token && cells[3] === token && cells[6] === token) || (cells[1] === token && cells[4] === token && cells[7] === token) || (cells[2] === token && cells[5] === token && cells[8] === token) || (cells[0] === token && cells[4] === token && cells[8] === token) || (cells[2] === token && cells[4] === token && cells[6] === token)) {
     return true
@@ -44,6 +48,8 @@ const winCheck = function (token) {
     return false
   }
 }
+
+// this may seem redundant, but due to how turns are being handled both of these are needed for player tokens
 const playerAvatarX = 'x'
 const playerAvatarO = 'o'
 
@@ -55,6 +61,7 @@ const playerAvatar = function (turnCount) {
   }
 }
 
+// dispays message every turn for current player
 const turnMessage = function () {
   if (isEven(turnCount)) {
     $('.turn-message').text(`Current turn is: ${playerAvatarX.toUpperCase()}`)
@@ -66,6 +73,7 @@ turnMessage()
 
 let apiCheck = 0
 const updateCell = function (cellIndex) {
+  // updates UI to display player token if space is available, if unavailable do not allow square to be taken and display message to user
   if (cells[cellIndex] === playerAvatarX || cells[cellIndex] === playerAvatarO) {
     $('.result-message').text('That square is already taken.')
   } else if (isEven(turnCount)) {
@@ -77,6 +85,7 @@ const updateCell = function (cellIndex) {
     $('.game-board')[cellIndex].innerHTML = '<p class="token">O</p>'
     $('.result-message').text('')
   }
+  // this array/function combo determines the current turn count by creating an empty array each call and then pushing the current filled cells into it and counting the length
   const turnArray = []
   cells.forEach(function (value) {
     if (value === playerAvatarX || value === playerAvatarO) {
@@ -84,7 +93,9 @@ const updateCell = function (cellIndex) {
     }
   })
   turnCount = turnArray.length
+  // call turn message before handling final win check
   turnMessage()
+  // which checker for moves 5-9, display results, sets game to over and updates score
   if (turnCount === 9) {
     if (winCheck(playerAvatarX) === true) {
       $('.result-message').text(`${playerAvatarX.toUpperCase()} has won!`)
@@ -112,6 +123,8 @@ const updateCell = function (cellIndex) {
       $('.win-o').text(`${++winO}`)
     }
   }
+  // updates API with correct token per turn and sets over value to true
+  // only runs if user is signed in
   const turnValue = playerAvatar(turnCount)
   if (store.user) {
     const data = {
@@ -142,12 +155,14 @@ const gameAction = function (cellIndex) {
   }
 }
 
+// gets cell data to pass to gameAction
 const onCellSelect = function (event) {
   const cellData = this.dataset
   const cellIndex = cellData.cellIndex
   gameAction(cellIndex)
 }
 
+// creates new local game and (if signed in) API game
 const onNewGame = function () {
   newGame()
   if (store.user) {
@@ -165,6 +180,7 @@ const onSignUp = function (event) {
     .catch(ui.signUpFailure)
 }
 
+// signs in user, creates new game on server and locally - pushes user stats to stats field
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
@@ -186,6 +202,7 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+// create a new local game upon signout
 const onSignOut = function (event) {
   event.preventDefault()
   api.signOut()
@@ -194,6 +211,7 @@ const onSignOut = function (event) {
     // .catch(ui.signOutFailure)
 }
 
+// only run when dropdown menu is closed, this prevents another call from happening if the menu is already open
 const onGetStats = function (event) {
   if ($(this).attr('aria-expanded') === 'false') {
     api.getStats()

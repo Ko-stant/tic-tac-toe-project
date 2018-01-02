@@ -6,6 +6,7 @@ const clearFields = function () {
   $('input:text, input:password, input[type=email]').val('')
 }
 
+// checks for wins of token 'x' or 'o' and counts them
 const winCheck = function (token) {
   let score = 0
   for (let i = 0; i < store.games.length; i++) {
@@ -16,12 +17,14 @@ const winCheck = function (token) {
   return score
 }
 
+// creates a username based on email
 const users = function (email) {
   const ampersand = email.indexOf('@')
   const userName = email.substring(0, ampersand)
   return userName
 }
 
+// displays message to user on successful account creation and pushes the email used to the sign-in form
 const signUpSuccess = function (data) {
   const email = $('#sign-up-email').val()
   clearFields()
@@ -29,6 +32,7 @@ const signUpSuccess = function (data) {
   $('.status-message-sign-up').text('Account created. Please Sign In')
 }
 
+// displays message on successful sign in - sets nav bar to signed in state - updates store data to match user - sets user to truncated email - sets score to 0
 const signInSuccess = function (data) {
   $('.sign-in-nav').css('display', 'none')
   $('#navbar').attr('id', 'sign-in-nav')
@@ -41,6 +45,7 @@ const signInSuccess = function (data) {
   clearFields()
 }
 
+// displays correct user stats each request
 const getStatsSuccess = function (data) {
   store.games = data.games
   const tokenX = winCheck('x')
@@ -54,6 +59,7 @@ const getStatsSuccess = function (data) {
   $('.stats-losses').text(`${tokenO}`)
 }
 
+// display message to user is unable to retrieve stats data
 const getStatsFailure = function (error) {
   const errorStatus = error.status.toString()
   if (errorStatus.startsWith('4') === true || errorStatus.startsWith('5') === true || errorStatus.startsWith('0') === true) {
@@ -62,19 +68,23 @@ const getStatsFailure = function (error) {
   }
 }
 
+// update store data to match created game
 const createGameSuccess = function (data) {
   store.game = data.game
 }
 
+// update store data to match updated game
 const updateGameSuccess = function (data) {
   store.game = data.game
 }
 
 // Until game is configured to handle storing previously logged in status and store games until available to patch again, these functions are not needed.
+
 // const updateGameFailure = function (error) {
 //   const errorStatus = error.status.toString()
 // }
 
+// display message to user if sign in is unsuccessful
 const signInFailure = function (error) {
   const errorStatus = error.status.toString()
   if (errorStatus.startsWith('4') === true) {
@@ -85,6 +95,7 @@ const signInFailure = function (error) {
   clearFields()
 }
 
+// display message to user if account creation is unsuccessful
 const signUpFailure = function (error) {
   const errorStatus = error.status.toString()
   if (errorStatus.startsWith('4') === true) {
@@ -95,11 +106,13 @@ const signUpFailure = function (error) {
   clearFields()
 }
 
+// Display message to user if password change is successful
 const changePasswordSuccess = function (data) {
   $('.status-message-change-password').text('Successfully changed password.')
   clearFields()
 }
 
+// Display message to user if password change is unsuccessful
 const changePasswordFailure = function (error) {
   const errorStatus = error.status.toString()
   if (errorStatus.startsWith('4') === true) {
@@ -110,6 +123,7 @@ const changePasswordFailure = function (error) {
   clearFields()
 }
 
+// on sign out - change nav back to default - set players back to Guest - set score back to 0 - display signed-out message - remove stored text on 'sign in' and 'change password'
 const signOutSuccess = function () {
   $('.account-nav').css('display', 'none')
   $('#navbar').attr('id', 'account-nav')
@@ -125,6 +139,7 @@ const signOutSuccess = function () {
 }
 
 // Until game is configured to handle storing previously logged in status and store games until available to patch again, these functions are not needed.
+
 // const signOutFailure = function (error) {
 //   console.error(error)
 // }
