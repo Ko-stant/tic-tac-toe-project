@@ -23,7 +23,10 @@ const users = function (email) {
 }
 
 const signUpSuccess = function (data) {
+  const email = $('#sign-up-email').val()
   clearFields()
+  $('#sign-in-email').val(email)
+  $('.status-message-sign-up').text('Account created. Please Sign In')
 }
 
 const signInSuccess = function (data) {
@@ -33,6 +36,7 @@ const signInSuccess = function (data) {
   $('#account-nav').attr('id', 'navbar')
   store.user = data.user
   $('.player-x').text(`${users(store.user.email)}`)
+  $('.result-message').text('Signed in succesfully.')
   $('.score').text(0)
   clearFields()
 }
@@ -42,6 +46,8 @@ const getStatsSuccess = function (data) {
   const tokenX = winCheck('x')
   const tokenO = winCheck('o')
   const tie = store.games.length - (tokenX + tokenO)
+  $('.stats-failure').css('display', 'none')
+  $('.stats-success').css('display', 'block')
   $('.stats-games').text(`${store.games.length}`)
   $('.stats-wins').text(`${tokenX}`)
   $('.stats-ties').text(`${tie}`)
@@ -49,7 +55,11 @@ const getStatsSuccess = function (data) {
 }
 
 const getStatsFailure = function (error) {
-  console.error(error)
+  const errorStatus = error.status.toString()
+  if (errorStatus.startsWith('4') === true || errorStatus.startsWith('5') === true || errorStatus.startsWith('0') === true) {
+    $('.stats-success').css('display', 'none')
+    $('.stats-failure').css('display', 'block')
+  }
 }
 
 const createGameSuccess = function (data) {
@@ -60,26 +70,43 @@ const updateGameSuccess = function (data) {
   store.game = data.game
 }
 
-const updateGameFailure = function (error) {
-  console.error(error)
-}
+// Until game is configured to handle storing previously logged in status and store games until available to patch again, these functions are not needed.
+// const updateGameFailure = function (error) {
+//   const errorStatus = error.status.toString()
+// }
 
 const signInFailure = function (error) {
-  console.error(error)
+  const errorStatus = error.status.toString()
+  if (errorStatus.startsWith('4') === true) {
+    $('.status-message-sign-in').text('Incorrect Email or Password.')
+  } else if (errorStatus.startsWith('5') === true || errorStatus.startsWith('0') === true) {
+    $('.status-message-sign-in').text('Unable to contact server.')
+  }
   clearFields()
 }
 
 const signUpFailure = function (error) {
-  console.error(error)
+  const errorStatus = error.status.toString()
+  if (errorStatus.startsWith('4') === true) {
+    $('.status-message-sign-up').text('Invalid Email or Password.')
+  } else if (errorStatus.startsWith('5') === true || errorStatus.startsWith('0') === true) {
+    $('.status-message-sign-up').text('Unable to contact server.')
+  }
   clearFields()
 }
 
 const changePasswordSuccess = function (data) {
+  $('.status-message-change-password').text('Successfully changed password.')
   clearFields()
 }
 
 const changePasswordFailure = function (error) {
-  console.error(error)
+  const errorStatus = error.status.toString()
+  if (errorStatus.startsWith('4') === true) {
+    $('.status-message-change-password').text('Incorrect Old Password.')
+  } else if (errorStatus.startsWith('5') === true || errorStatus.startsWith('0') === true) {
+    $('.status-message-change-password').text('Unable to contact server.')
+  }
   clearFields()
 }
 
@@ -91,12 +118,16 @@ const signOutSuccess = function () {
   $('.player-x').text('Guest')
   $('.player-o').text('Guest')
   $('.score').text(0)
+  $('.result-message').text('Signed out succesfully.')
+  $('.status-message-sign-up').text('')
+  $('.status-message-change-password').text('')
   store.user = undefined
 }
 
-const signOutFailure = function (error) {
-  console.error(error)
-}
+// Until game is configured to handle storing previously logged in status and store games until available to patch again, these functions are not needed.
+// const signOutFailure = function (error) {
+//   console.error(error)
+// }
 
 module.exports = {
   signUpSuccess,
@@ -106,10 +137,10 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure,
+  // signOutFailure,
   createGameSuccess,
   updateGameSuccess,
-  updateGameFailure,
+  // updateGameFailure,
   getStatsSuccess,
   getStatsFailure
 }

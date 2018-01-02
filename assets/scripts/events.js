@@ -129,7 +129,7 @@ const updateCell = function (cellIndex) {
       apiCheck += 1
       api.updateGame(data)
         .then(ui.updateGameSuccess)
-        .catch(ui.updateGameFailure)
+        // .catch(ui.updateGameFailure)
     }
   }
 }
@@ -191,7 +191,7 @@ const onSignOut = function (event) {
   api.signOut()
     .then(ui.signOutSuccess)
     .then(newGame())
-    .catch(ui.signOutFailure)
+    // .catch(ui.signOutFailure)
 }
 
 const onGetStats = function (event) {
