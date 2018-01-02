@@ -89,19 +89,27 @@ const updateCell = function (cellIndex) {
     if (winCheck(playerAvatarX) === true) {
       $('.result-message').text(`${playerAvatarX.toUpperCase()} has won!`)
       gameEnd(true)
+      let winX = $('.win-x').text()
+      $('.win-x').text(`${++winX}`)
     } else {
       $('.result-message').text('There was a tie!')
       gameEnd(true)
+      let tie = $('.tie').text()
+      $('.tie').text(`${++tie}`)
     }
   } else if (turnCount === 5 || turnCount === 7) {
     if (winCheck(playerAvatarX) === true) {
       $('.result-message').text(`${playerAvatarX.toUpperCase()} has won!`)
       gameEnd(true)
+      let winX = $('.win-x').text()
+      $('.win-x').text(`${++winX}`)
     }
   } else if (turnCount === 6 || turnCount === 8) {
     if (winCheck(playerAvatarO) === true) {
       $('.result-message').text(`${playerAvatarO.toUpperCase()} has won!`)
       gameEnd(true)
+      let winO = $('.win-o').text()
+      $('.win-o').text(`${++winO}`)
     }
   }
   const turnValue = playerAvatar(turnCount)
@@ -160,13 +168,12 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-
   api.signIn(data)
     .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
     .then(api.createGame)
     .then(ui.createGameSuccess)
     .then(newGame())
-    .catch(ui.signInFailure)
 }
 
 const onChangePassword = function (event) {

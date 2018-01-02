@@ -23,6 +23,7 @@ const signInSuccess = function (data) {
   $('#account-nav').attr('id', 'navbar')
   store.user = data.user
   $('.player-x').text(`${users(store.user.email)}`)
+  $('.score').text(0)
   clearFields()
 }
 
@@ -64,6 +65,7 @@ const signOutSuccess = function () {
   $('#sign-in-nav').attr('id', 'navbar')
   $('.player-x').text('Guest')
   $('.player-o').text('Guest')
+  $('.score').text(0)
   store.user = undefined
 }
 
