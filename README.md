@@ -1,5 +1,5 @@
 ## GAME LINK
-[I'm an inline-style link with title](https://ko-stant.github.io/tic-tac-toe-project/ "K-Stant Tic-Tac-Toe")
+[My Tic Tac Toe on gh-pages](https://ko-stant.github.io/tic-tac-toe-project/ "K-Stant Tic-Tac-Toe")
 
 ## TECHNOLOGIES USED
 
