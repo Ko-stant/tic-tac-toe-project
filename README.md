@@ -60,12 +60,14 @@ Completed√
 
 -Sign out clears logged data and changes navbar to reflect being signed out
 
+-UI updates to display errors to user and some success messages as well
+
 Completed√
 
 
 ### TODO
 
-UI updates to display errors to user and some success messages as well
+-Bonuses
 
 ### FUTURE POTENTIAL
 _these may make it into future updates_
