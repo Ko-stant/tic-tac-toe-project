@@ -173,6 +173,8 @@ const onSignIn = function (event) {
     .catch(ui.signInFailure)
     .then(api.createGame)
     .then(ui.createGameSuccess)
+    .then(api.getStats)
+    .then(ui.getStatsSuccess)
     .then(newGame())
 }
 
@@ -192,6 +194,14 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const onGetStats = function (event) {
+  if ($(this).attr('aria-expanded') === 'false') {
+    api.getStats()
+      .then(ui.getStatsSuccess)
+      .catch(ui.getStatsFailure)
+  }
+}
+
 const addHandlers = function () {
   $('.game-board').on('click', onCellSelect)
   $('#new-game').on('click', onNewGame)
@@ -199,6 +209,7 @@ const addHandlers = function () {
   $('#sign-in-form').on('submit', onSignIn)
   $('#change-password-form').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
+  $('.player-stats-menu').on('click', onGetStats)
 }
 
 module.exports = {

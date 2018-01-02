@@ -2,11 +2,12 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Mr+Bedfort');
 $black: #000;
-$background: rgba(178, 152, 62, .6);
+$background: #ccc;
 $board-background: #8c9aff;
-$message-color: #464d7f;
+$message-color: #cc4f5c;
 $green: #0d0;
 $red: #d00;
+$dropdown-text-color: #cc7a5c;
 $white: #ddd;
 
 body {
@@ -18,6 +19,26 @@ body {
 
 table {
   margin: auto;
+}
+
+[data-cell-index='4'] {
+  border: 4px solid $board-background;
+}
+
+[data-cell-index='3'],
+[data-cell-index='5'] {
+  border-bottom: 4px solid $board-background;
+  border-top: 4px solid $board-background;
+}
+
+[data-cell-index='1'],
+[data-cell-index='7'] {
+  border-left: 4px solid $board-background;
+  border-right: 4px solid $board-background;
+}
+
+.collapse {
+  color: $board-background;
 }
 
 .sign-in-nav {
@@ -72,15 +93,29 @@ table {
   width: 375px;
 }
 
+.turn-message {
+  color: $black;
+}
+
 .game-icon {
   filter: invert(100%);
   height: 120%;
   width: 35px;
 }
 
+.stats-list {
+  list-style-type: none;
+  text-align: right;
+  width: 70%;
+}
+
+.stats-menu {
+  text-align: center;
+}
+
 .game-board {
-  background-color: $board-background;
-  border: 1px solid $black;
+  // background-color: $board-background;
+
   cursor: crosshair;
   font-family: 'Mr Bedfort', cursive;
   height: 125px;

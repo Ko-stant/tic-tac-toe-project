@@ -1,7 +1,9 @@
 ###
 GAME LOGIC
 
-Mostly done how to handle incoming clicks, still need to work out Reset
+Mostly done how to handle incoming clicks, still need to work out Reset.
+
+Completed 
 
 
 ###

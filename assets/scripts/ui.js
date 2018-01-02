@@ -6,6 +6,16 @@ const clearFields = function () {
   $('input:text, input:password, input[type=email]').val('')
 }
 
+const winCheck = function (token) {
+  let score = 0
+  for (let i = 0; i < store.games.length; i++) {
+    if ((store.games[i].cells[0] === token && store.games[i].cells[1] === token && store.games[i].cells[2] === token) || (store.games[i].cells[3] === token && store.games[i].cells[4] === token && store.games[i].cells[5] === token) || (store.games[i].cells[6] === token && store.games[i].cells[7] === token && store.games[i].cells[8] === token) || (store.games[i].cells[0] === token && store.games[i].cells[3] === token && store.games[i].cells[6] === token) || (store.games[i].cells[1] === token && store.games[i].cells[4] === token && store.games[i].cells[7] === token) || (store.games[i].cells[2] === token && store.games[i].cells[5] === token && store.games[i].cells[8] === token) || (store.games[i].cells[0] === token && store.games[i].cells[4] === token && store.games[i].cells[8] === token) || (store.games[i].cells[2] === token && store.games[i].cells[4] === token && store.games[i].cells[6] === token)) {
+      score++
+    }
+  }
+  return score
+}
+
 const users = function (email) {
   const ampersand = email.indexOf('@')
   const userName = email.substring(0, ampersand)
@@ -25,6 +35,21 @@ const signInSuccess = function (data) {
   $('.player-x').text(`${users(store.user.email)}`)
   $('.score').text(0)
   clearFields()
+}
+
+const getStatsSuccess = function (data) {
+  store.games = data.games
+  const tokenX = winCheck('x')
+  const tokenO = winCheck('o')
+  const tie = store.games.length - (tokenX + tokenO)
+  $('.stats-games').text(`${store.games.length}`)
+  $('.stats-wins').text(`${tokenX}`)
+  $('.stats-ties').text(`${tie}`)
+  $('.stats-losses').text(`${tokenO}`)
+}
+
+const getStatsFailure = function (error) {
+  console.error(error)
 }
 
 const createGameSuccess = function (data) {
@@ -84,5 +109,7 @@ module.exports = {
   signOutFailure,
   createGameSuccess,
   updateGameSuccess,
-  updateGameFailure
+  updateGameFailure,
+  getStatsSuccess,
+  getStatsFailure
 }
