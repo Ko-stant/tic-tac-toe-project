@@ -125,6 +125,7 @@ const updateCell = function (cellIndex) {
       gameEnd(true)
       let winO = $('.win-o').text()
       $('.win-o').text(`${++winO}`)
+      $('.new-game-button').css('display', 'inline-block')
     }
   }
   // updates API with correct token per turn and sets over value to true
