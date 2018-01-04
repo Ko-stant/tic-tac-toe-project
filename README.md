@@ -81,4 +81,24 @@ _these may make it into future updates_
 -Store games locally after loss of network connection and upload results when connection is restored. This should be able to be handled by creating a games object after a successful sign in, and then each error of game actions (create, update cell, game over) while signed in will push game data to the games object setting their ids to 0. When games are over attempt to run loop through object for all with id of 0 with post requests to server and update game id on successful API call
 
 ## WIREFRAMES & USER STORIES
-_tbd_
+
+### WIREFRAMES
+
+[Version1](./tree/master/images/wireframe-v1.jpg)
+[Version2](./tree/master/images/wireframe-v2.jpg)
+
+### USER STORIES
+#### Initial goals
+
+- As a potential user I want to be able to sign in easily
+- As a signed-in user I want to be able to know that I am signed in
+- As a player I want to be able to know what piece I’m playing with
+- As a player I want to be able to see the current sessions score
+- As a player I want to be able to start a new game
+
+#### More in depth/bonus
+
+- As a signed-in user I want to see my win/loss/tie history
+- As a single-player I want to be able to play by myself
+- As a player I want to play against a remote player
+- As a player without a great internet connection, I want to be able to keep playing a cached game
