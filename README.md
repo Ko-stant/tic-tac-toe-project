@@ -84,8 +84,8 @@ _these may make it into future updates_
 
 ### WIREFRAMES
 
-[Version1](../tree/master/images/wireframe-v1.jpg)
-[Version2](../tree/master/images/wireframe-v2.jpg)
+[Version1](../master/images/wireframe-v1.jpg)
+[Version2](../master/images/wireframe-v2.jpg)
 
 ### USER STORIES
 #### Initial goals
