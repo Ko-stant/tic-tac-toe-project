@@ -34,6 +34,7 @@ const signUpSuccess = function (data) {
 
 // displays message on successful sign in - sets nav bar to signed in state - updates store data to match user - sets user to truncated email - sets score to 0
 const signInSuccess = function (data) {
+  $('.request-sign-in-message').css('display', 'none')
   $('.sign-in-nav').css('display', 'none')
   $('#navbar').attr('id', 'sign-in-nav')
   $('.account-nav').css('display', 'block')
@@ -129,6 +130,7 @@ const signOutSuccess = function () {
   $('#navbar').attr('id', 'account-nav')
   $('.sign-in-nav').css('display', 'block')
   $('#sign-in-nav').attr('id', 'navbar')
+  $('.request-sign-in-message').css('display', 'block')
   $('.player-x').text('Guest')
   $('.player-o').text('Guest')
   $('.score').text(0)

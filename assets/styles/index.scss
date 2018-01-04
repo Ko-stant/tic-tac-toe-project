@@ -3,11 +3,9 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import url('https://fonts.googleapis.com/css?family=Mr+Bedfort');
 $black: #000;
 $background: #ccc;
-$board-background: #8c9aff;
+$main-color: #8c9aff;
 $message-color: #cc4f5c;
-$green: #0d0;
 $red: #d00;
-$dropdown-text-color: #cc7a5c;
 $white: #ddd;
 
 body {
@@ -22,49 +20,73 @@ table {
 }
 
 [data-cell-index='4'] {
-  border: 4px solid $board-background;
+  border: 4px solid $main-color;
 }
 
 [data-cell-index='3'],
 [data-cell-index='5'] {
-  border-bottom: 4px solid $board-background;
-  border-top: 4px solid $board-background;
+  border-bottom: 4px solid $main-color;
+  border-top: 4px solid $main-color;
 }
 
 [data-cell-index='1'],
 [data-cell-index='7'] {
-  border-left: 4px solid $board-background;
-  border-right: 4px solid $board-background;
+  border-left: 4px solid $main-color;
+  border-right: 4px solid $main-color;
 }
 
 .collapse {
-  color: $board-background;
+  color: $main-color;
 }
 
+.request-sign-in-message,
+.stats-success,
 .sign-in-nav {
   display: block;
 }
 
+.new-game-button,
+.stats-failure,
 .account-nav {
   display: none;
 }
 
-.stats-success {
-  display: block;
+.request-sign-in {
+  box-sizing: border-box;
+  clear: both;
+  color: $black;
+  height: 1.5em;
+  margin: 0 auto;
+  padding-top: 60px;
+  text-align: center;
+  width: 375px;
+
+  .request-sign-in-message {
+    border: 1px solid $black;
+    min-width: 300px;
+  }
 }
 
-.stats-failure {
-  display: none;
+.new-game {
+  height: 30px;
+  text-align: center;
+}
+
+.game {
+  box-sizing: border-box;
+  margin-top: 30px;
+  min-width: 400px;
+  user-select: none;
 }
 
 .input {
   &:invalid {
-    border: 1px solid $board-background;
+    border: 1px solid $main-color;
     border-bottom: 2px dashed $red;
   }
 
   &:valid {
-    border: 1px solid $board-background;
+    border: 1px solid $main-color;
   }
 }
 
@@ -73,15 +95,10 @@ table {
 }
 
 .game-title {
-  color: $board-background;
+  color: $main-color;
   font-family: 'Lucida Console', Monaco, monospace;
   margin-top: 15px;
-}
-
-.game {
-  box-sizing: border-box;
   min-width: 400px;
-  user-select: none;
 }
 
 .new-game {
@@ -116,12 +133,6 @@ table {
   color: $black;
 }
 
-.game-icon {
-  filter: invert(100%);
-  height: 120%;
-  width: 35px;
-}
-
 .stats-list {
   list-style-type: none;
   text-align: right;
@@ -147,7 +158,7 @@ table {
 }
 
 .player-table {
-  background-color: $board-background;
+  background-color: $main-color;
 
   .player-head {
     background-color: $white;
@@ -168,7 +179,7 @@ table {
 
 
 .score-board {
-  background-color: $board-background;
+  background-color: $main-color;
   border: 1px solid $black;
   cursor: crosshair;
   font-family: 'Mr Bedfort', cursive;

@@ -21,6 +21,7 @@ const newGame = function () {
   $('.token').text('')
   $('.result-message').text('')
   turnMessage()
+  $('.new-game-button').css('display', 'none')
 }
 
 // sets over to true and displays game over message
@@ -102,11 +103,13 @@ const updateCell = function (cellIndex) {
       gameEnd(true)
       let winX = $('.win-x').text()
       $('.win-x').text(`${++winX}`)
+      $('.new-game-button').css('display', 'inline-block')
     } else {
       $('.result-message').text('There was a tie!')
       gameEnd(true)
       let tie = $('.tie').text()
       $('.tie').text(`${++tie}`)
+      $('.new-game-button').css('display', 'inline-block')
     }
   } else if (turnCount === 5 || turnCount === 7) {
     if (winCheck(playerAvatarX) === true) {
@@ -114,6 +117,7 @@ const updateCell = function (cellIndex) {
       gameEnd(true)
       let winX = $('.win-x').text()
       $('.win-x').text(`${++winX}`)
+      $('.new-game-button').css('display', 'inline-block')
     }
   } else if (turnCount === 6 || turnCount === 8) {
     if (winCheck(playerAvatarO) === true) {
