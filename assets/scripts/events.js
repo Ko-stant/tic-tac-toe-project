@@ -28,6 +28,7 @@ const newGame = function () {
 const gameEnd = function (boolean) {
   if (boolean) {
     gameOver()
+    $('.new-game-button').css('display', 'inline-block')
     over = true
   }
 }
@@ -103,13 +104,11 @@ const updateCell = function (cellIndex) {
       gameEnd(true)
       let winX = $('.win-x').text()
       $('.win-x').text(`${++winX}`)
-      $('.new-game-button').css('display', 'inline-block')
     } else {
       $('.result-message').text('There was a tie!')
       gameEnd(true)
       let tie = $('.tie').text()
       $('.tie').text(`${++tie}`)
-      $('.new-game-button').css('display', 'inline-block')
     }
   } else if (turnCount === 5 || turnCount === 7) {
     if (winCheck(playerAvatarX) === true) {
@@ -117,7 +116,6 @@ const updateCell = function (cellIndex) {
       gameEnd(true)
       let winX = $('.win-x').text()
       $('.win-x').text(`${++winX}`)
-      $('.new-game-button').css('display', 'inline-block')
     }
   } else if (turnCount === 6 || turnCount === 8) {
     if (winCheck(playerAvatarO) === true) {
@@ -125,7 +123,6 @@ const updateCell = function (cellIndex) {
       gameEnd(true)
       let winO = $('.win-o').text()
       $('.win-o').text(`${++winO}`)
-      $('.new-game-button').css('display', 'inline-block')
     }
   }
   // updates API with correct token per turn and sets over value to true
