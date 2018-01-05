@@ -215,7 +215,7 @@ const onSignOut = function (event) {
 
 // only run when dropdown menu is closed, this prevents another call from happening if the menu is already open
 const onGetStats = function (event) {
-  if ($(this).attr('aria-expanded') === 'false') {
+  if ($(this).attr('aria-expanded') === 'false' || $(this).attr('aria-expanded') === undefined) {
     api.getStats()
       .then(ui.getStatsSuccess)
       .catch(ui.getStatsFailure)
