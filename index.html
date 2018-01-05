@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>K-Stant Tic-Tac-Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body class="container-fluid">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="icon-bar"></span>
+    			<span class="icon-bar"></span>
+    			<span class="icon-bar"></span>
+			</button>
+      <h4 class="game-title">Tic-Tac-Toe</h4>
+      </div>
+      <div class="sign-in-nav">
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Create Account <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <div class="col-lg-12">
+                  <div class="text-center">
+                    <h3><b>Create Account</b></h3></div>
+                  <form id="sign-up-form" autocomplete="off">
+                    <div class="form-group">
+                      <input type="email" name="credentials[email]" id="sign-up-email" class="form-control input" placeholder="Email Address" value="" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="credentials[password]" id="sign-up-password" class="form-control input" placeholder="Password" minlength="3" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="credentials[password_confirmation]" id="confirm-password" class="form-control input" placeholder="Confirm Password" minlength="3" required>
+                    </div>
+                    <div class="status-message-div">
+                      <p class="status-message-sign-up"></p>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-xs-6 col-xs-offset-3">
+                          <input type="submit" name="submit" id="sign-up-submit" class="form-control btn btn-success" value="Create Account">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <div class="col-lg-12">
+                  <div class="text-center">
+                    <h3><b>Sign In</b></h3></div>
+                  <form id="sign-in-form" role="form" autocomplete="off">
+                    <div class="form-group">
+                      <input type="email" name="credentials[email]" id="sign-in-email" class="form-control input" placeholder="Email" value="" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="credentials[password]" id="sign-in-password" class="form-control input" placeholder="Password" autocomplete="off" minlength="3" required>
+                    </div>
+                    <div class="status-message-div">
+                      <p class="status-message-sign-in"></p>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-xs-6 col-xs-offset-3">
+                          <input type="submit" name="login-submit" id="sign-in-submit" class="form-control btn btn-success" value="Sign In">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="account-nav">
+        <div id="account-nav" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle player-stats-menu" data-toggle="dropdown">Player Stats <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <div class="col-lg-12 stats-menu">
+                  <div class="player-stats">
+                    <div class="stats-success">
+                      <ul class="stats-list">
+                        <li class="stats">Games Played: <span class="stats-games">. . .</span></li>
+                        <li class="stats">Wins: <span class="stats-wins">. . .</span></li>
+                        <li class="stats">Ties: <span class="stats-ties">. . .</span></li>
+                        <li class="stats">Losses: <span class="stats-losses">. . .</span></li>
+                      </ul>
+                    </div>
+                    <div class="stats-failure">
+                      <p class="stats-message-failure">Unable to retrive data.</p>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Change Password <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <div class="col-lg-12">
+                  <div class="text-center">
+                    <h3><b>Change Password</b></h3></div>
+                  <form id="change-password-form" autocomplete="off">
+                    <div class="form-group">
+                      <input type="password" name="passwords[old]" id="old-password" class="form-control input" placeholder="Previous Password" minlength="3" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="passwords[new]" id="new-password" class="form-control input" placeholder="New Password" minlength="3" required>
+                    </div>
+                    <div class="status-message-div">
+                      <p class="status-message-change-password"></p>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-xs-6 col-xs-offset-3">
+                          <input type="submit" name="change-password-submit" id="change-password-submit" class="form-control btn btn-danger" value="Confirm">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign Out <span class="caret"></span></a>
+              <ul class="dropdown-menu sign-out" role="menu">
+                <div class="col-xs-6 col-xs-offset-3">
+                  <div class="text-center">
+                  <input type="button" name="sign-out-submit" id="sign-out" class="form-control btn btn-danger" value="Sign Out">
+                  </div>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="request-sign-in">
+    <p class="request-sign-in-message">Please Sign In to Save Player Stats</p>
+  </div>
+  <div class="game">
+    <div>
+      <p class="result-message message"></p>
+    </div>
+    <table id="game-field" class="game-field">
+      <tbody>
+        <tr class="row">
+          <td class="game-board" data-cell-index='0'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='1'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='2'>
+            <p class="token"></p>
+          </td>
+        </tr>
+        <tr class="row">
+          <td class="game-board" data-cell-index='3'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='4'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='5'>
+            <p class="token"></p>
+          </td>
+        </tr>
+        <tr class="row">
+          <td class="game-board" data-cell-index='6'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='7'>
+            <p class="token"></p>
+          </td>
+          <td class="game-board" data-cell-index='8'>
+            <p class="token"></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <p class="turn-message message"></p>
+    </div>
+    <div class="new-game">
+      <button type="button" class="btn btn-success new-game-button" id="new-game">New Game</button>
+    </div>
+    <div class="player-div">
+      <table class="player-table">
+        <thead>
+          <tr class="player-row">
+            <th scope="col" class="player player-head">Player X</th>
+            <th scope="col" class="player player-head">Player O</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row" class="player-row">
+            <td class="player">
+              <p class="player-x">Guest</p>
+            </td>
+            <td class="player">
+              <p class="player-o">Guest</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="score-div">
+      <table class="score-field">
+        <thead>
+          <tr>
+            <th scope="col" class="score-head"></th>
+            <th scope="col" class="score-head">X Wins</th>
+            <th scope="col" class="score-head">Ties</th>
+            <th scope="col" class="score-head">O Wins</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row">
+            <td class="score-board">
+              <p class="score-title">Score: </p>
+            </td>
+            <td class="score-board">
+              <p class="win-x score">0</p>
+            </td>
+            <td class="score-board">
+              <p class="tie score">0</p>
+            </td>
+            <td class="score-board">
+              <p class="win-o score">0</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
